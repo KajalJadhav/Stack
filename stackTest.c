@@ -57,7 +57,25 @@ void test_6_push_float_element_in_stack(){
 	free(actual);
 }
 
-void test_7_pop_int_element_from_stack(){
+void test_7_push_double_element_in_stack(){
+	Stack* actual = create(sizeof(double),2);
+	double value = 1.000000;
+	double result = push(actual,&value);
+	double* data = (double*)actual->elements;
+	ASSERT(data[0] == 1.000000);
+	free(actual);
+}
+
+void test_8_push_character_element_in_stack(){
+    Stack* actual = create(sizeof(char),2);
+    char value = 'k';
+    int res = push(actual,&value);
+    char* data = (char*)actual->elements;
+    ASSERT(data[0]=='k');
+    free(actual);        
+}
+
+void test_9_pop_integer_element_from_stack(){
         Stack* actual = create(sizeof(int),5);
         int* data = actual->elements;
         data[0] = 1;
@@ -67,6 +85,16 @@ void test_7_pop_int_element_from_stack(){
         data[4] = 5;
         actual->top = 4;
         ASSERT(5 == *(int*)pop(actual));
+}
+
+void test_10_pop_character_element_from_stack(){
+    Stack* actual = create(sizeof(char),3);
+    char* data = actual->elements;
+    data[0] = 'k';
+    data[1] = 'a';
+    data[2] = 'j';
+    actual->top = 2;
+    ASSERT('j' == *(char*)pop(actual));
 }
 
 void test_fail(){
